@@ -20,8 +20,8 @@ class FLBasicExampleModule extends FLBuilderModule {
             'name'          => __('Basic Example', 'fl-builder'),
             'description'   => __('An basic example for coding new modules.', 'fl-builder'),
             'category'		=> __('Example Modules', 'fl-builder'),
-            'dir'           => FL_MODULE_EXAMPLES_DIR . 'modules/basic-example/',
-            'url'           => FL_MODULE_EXAMPLES_URL . 'modules/basic-example/',
+            'dir'           => FL_SWEET_DIR . 'modules/basic-example/',
+            'url'           => FL_SWEET_URL . 'modules/basic-example/',
             'editor_export' => true, // Defaults to true and can be omitted.
             'enabled'       => true, // Defaults to true and can be omitted.
         ));

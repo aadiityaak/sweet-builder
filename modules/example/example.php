@@ -17,8 +17,8 @@ class FLExampleModule extends FLBuilderModule {
             'name'          => __('Example', 'fl-builder'),
             'description'   => __('An example for coding new modules.', 'fl-builder'),
             'category'		=> __('Example Modules', 'fl-builder'),
-            'dir'           => FL_MODULE_EXAMPLES_DIR . 'modules/example/',
-            'url'           => FL_MODULE_EXAMPLES_URL . 'modules/example/',
+            'dir'           => FL_SWEET_DIR . 'modules/example/',
+            'url'           => FL_SWEET_URL . 'modules/example/',
             'editor_export' => true, // Defaults to true and can be omitted.
             'enabled'       => true, // Defaults to true and can be omitted.
         ));
@@ -246,7 +246,7 @@ FLBuilder::register_module('FLExampleModule', array(
     ),
     'include'       => array( // Tab
         'title'         => __('Include', 'fl-builder'), // Tab title
-        'file'          => FL_MODULE_EXAMPLES_DIR . 'example/includes/settings-example.php'
+        'file'          => FL_SWEET_DIR . 'example/includes/settings-example.php'
     )
 ));
 

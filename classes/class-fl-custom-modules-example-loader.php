@@ -35,15 +35,16 @@ class FL_Custom_Modules_Example_Loader {
 	 * Loads our custom modules.
 	 */
 	static public function load_modules() {
-		// require_once FL_MODULE_EXAMPLES_DIR . 'modules/basic-example/basic-example.php';
-		// require_once FL_MODULE_EXAMPLES_DIR . 'modules/example/example.php';
+		// require_once FL_SWEET_DIR . 'modules/basic-example/basic-example.php';
+		// require_once FL_SWEET_DIR . 'modules/example/example.php';
+		require_once FL_SWEET_DIR . 'modules/post-tabs/post-tabs.php';
 	}
 	
 	/**
 	 * Registers our custom fields.
 	 */
 	static public function register_fields( $fields ) {
-		$fields['my-custom-field'] = FL_MODULE_EXAMPLES_DIR . 'fields/my-custom-field.php';
+		$fields['my-custom-field'] = FL_SWEET_DIR . 'fields/my-custom-field.php';
 		return $fields;
 	}
 	
@@ -55,8 +56,8 @@ class FL_Custom_Modules_Example_Loader {
 			return;
 		}
 		
-		wp_enqueue_style( 'my-custom-fields', FL_MODULE_EXAMPLES_URL . 'assets/css/fields.css', array(), '' );
-		wp_enqueue_script( 'my-custom-fields', FL_MODULE_EXAMPLES_URL . 'assets/js/fields.js', array(), '', true );
+		wp_enqueue_style( 'my-custom-fields', FL_SWEET_URL . 'assets/css/fields.css', array(), '' );
+		wp_enqueue_script( 'my-custom-fields', FL_SWEET_URL . 'assets/js/fields.js', array(), '', true );
 	}
 }
 

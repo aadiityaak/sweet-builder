@@ -7,7 +7,7 @@
  * Author: Velocity Developer
  * Author URI: https://velocitydeveloper.com
  */
-define( 'FL_MODULE_EXAMPLES_DIR', plugin_dir_path( __FILE__ ) );
-define( 'FL_MODULE_EXAMPLES_URL', plugins_url( '/', __FILE__ ) );
+define( 'FL_SWEET_DIR', plugin_dir_path( __FILE__ ) );
+define( 'FL_SWEET_URL', plugins_url( '/', __FILE__ ) );
 
-require_once FL_MODULE_EXAMPLES_DIR . 'classes/class-fl-custom-modules-example-loader.php';
+require_once FL_SWEET_DIR . 'classes/class-fl-custom-modules-example-loader.php';
