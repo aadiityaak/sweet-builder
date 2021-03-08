@@ -5,7 +5,6 @@
 ?>
 
 <div class="fl-post-tabs">
-    
     <?php 
     echo '<ul class="nav mb-2 nav-'.$tab_style.'" id="nav-tab" role="tablist">';
         $i = 0;
