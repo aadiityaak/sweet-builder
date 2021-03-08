@@ -54,7 +54,25 @@ FLBuilder::register_module('FLPostabsModule', array(
                         'type'          => 'select',
                         'label'         => __('Category', 'fl-builder'),
                         'options'       => FLPostabsModule::getCatList(),
+                        'class'         => 'form-controll',
                         'multi-select'  => true
+                    ),
+                    'posts_per_page' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Post Count', 'fl-builder' ),
+                        'default'       => '5',
+                        'class'         => 'form-controll',
+                        'description'   => __( 'Only Number', 'fl-builder' ),
+                        'help'          => __( 'Ex. "5"', 'fl-builder' )
+                      ),
+                      'tab_style'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Tabs Style', 'fl-builder'),
+                        'default'       => 'tabs',
+                        'options'       => array(
+                            'tabs'      => __('Tabs', 'fl-builder'),
+                            'pills'      => __('Pills', 'fl-builder'),
+                        )
                     ),
                 )
             )
