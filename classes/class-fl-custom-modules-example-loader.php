@@ -35,8 +35,8 @@ class FL_Custom_Modules_Example_Loader {
 	 * Loads our custom modules.
 	 */
 	static public function load_modules() {
-		require_once FL_MODULE_EXAMPLES_DIR . 'modules/basic-example/basic-example.php';
-		require_once FL_MODULE_EXAMPLES_DIR . 'modules/example/example.php';
+		// require_once FL_MODULE_EXAMPLES_DIR . 'modules/basic-example/basic-example.php';
+		// require_once FL_MODULE_EXAMPLES_DIR . 'modules/example/example.php';
 	}
 	
 	/**
