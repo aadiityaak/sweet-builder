@@ -7,14 +7,15 @@
 <div class="fl-post-tabs">
     
     <?php 
-    echo '<ul class="nav nav-'.$tab_style.'" id="nav-tab" role="tablist">';
+    echo '<ul class="nav mb-2 nav-'.$tab_style.'" id="nav-tab" role="tablist">';
         $i = 0;
         foreach($categories as $category){
             $slug       = get_term( $category )->slug;
             $j          = $i++;
             $active     = $j == 0 ? 'active' : '';
             $selected   = $j == 0 ? 'true' : 'false';
-            echo '<li class="nav-item" role="presentation">';
+            $width      = count($categories) == 2 ? 'w-50' : '';
+            echo '<li class="nav-item '.$width.'" role="presentation">';
                 echo '<a class="nav-link btn btn-sm mr-2 '.$active.'" id="'.$tab_style.'-'.$slug.'-tab" data-toggle="pill" href="#'.$tab_style.'-'.$slug.'" role="tab" aria-controls="'.$tab_style.'-'.$slug.'" aria-selected="'.$selected.'">'.get_term( $category )->name.'</a>';
             echo '</li>';
         }
@@ -29,7 +30,10 @@
             $active = $i++ == 0 ? 'show active' : '';
             echo '<div class="tab-pane fade '.$active.'" id="'.$tab_style.'-'.$slug.'" role="tabpanel" aria-labelledby="'.$tab_style.'-'.$slug.'-tab">';
                 //set category
-                $args = array( 'category__in' => $category );
+                $args = [
+                    'category__in'      => $category,
+                    'posts_per_page'    => $posts_per_page
+                ];
                 // The Query
                 $query = new WP_Query( $args );
                 // The Loop
