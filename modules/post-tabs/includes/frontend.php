@@ -16,7 +16,7 @@
             $selected   = $j == 0 ? 'true' : 'false';
             $width      = count($categories) == 2 ? 'w-50' : '';
             echo '<li class="nav-item '.$width.'" role="presentation">';
-                echo '<a class="nav-link btn btn-sm mr-2 rounded-0 '.$active.'" id="'.$tab_style.'-'.$slug.'-tab" data-toggle="pill" href="#'.$tab_style.'-'.$slug.'" role="tab" aria-controls="'.$tab_style.'-'.$slug.'" aria-selected="'.$selected.'">'.get_term( $category )->name.'</a>';
+                echo '<a class="nav-link btn btn-sm mr-2 rounded-0 font-weight-bold '.$active.'" id="'.$tab_style.'-'.$slug.'-tab" data-toggle="pill" href="#'.$tab_style.'-'.$slug.'" role="tab" aria-controls="'.$tab_style.'-'.$slug.'" aria-selected="'.$selected.'">'.get_term( $category )->name.'</a>';
             echo '</li>';
         }
     echo '</ul>';
