@@ -21,16 +21,9 @@ function justg_in_single() {
     global $postview, $post;
     
     if ( is_single() ) {
-        // $postview->set_post_view($id, $session=false, $administrator=false) default: don't use session & don't count administrator
-        $postview->set_post_view($post->ID, false, false);
+        // $postview->set_post_view($id, $cookie=false, $administrator=false) default: don't use session & don't count administrator
+        $postview->set_post_view($post->ID, true, false);
     }
 
 }
-add_action('wp_head', 'justg_in_single');
-
-function justg_register_session() {
-    if( !session_id() ){
-        session_start();
-    }
-}
-add_action('init', 'justg_register_session');
+add_action('init', 'justg_in_single');

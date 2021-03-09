@@ -8,25 +8,24 @@ class PostView {
         $this->key = 'post_views_count';
     }
 
-    public function set_post_view($id, $session = false, $admin = false) {
+    public function set_post_view($id, $cookie= false, $admin = false) {
 
         $count = (int) get_post_meta( $id, $this->key, true );
-        $session_view = isset($_SESSION['post_views']) ? $_SESSION['post_views'] : '';
         $count++;
 
         if($admin && current_user_can('administrator')){
-            if( $session === true ){
-                if(empty($session_view)){
-                    $_SESSION['post_views'] = time();
+            if( $cookie === true ){
+                if($_COOKIE['last_ip_address']!= $_SERVER['REMOTE_ADDR']){
+                    setcookie("last_ip_address", $_SERVER['REMOTE_ADDR']);
                     update_post_meta( $id, $this->key, $count );
                 }
             } else {
                 update_post_meta( $id, $this->key, $count );
             }
         } else {
-            if( $session === true ){
-                if(empty($session_view)){
-                    $_SESSION['post_views'] = time();
+            if( $cookie === true ){
+                if($_COOKIE['last_ip_address']!= $_SERVER['REMOTE_ADDR']){
+                    setcookie("last_ip_address", $_SERVER['REMOTE_ADDR']);
                     update_post_meta( $id, $this->key, $count );
                 }
             } else {
