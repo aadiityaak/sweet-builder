@@ -1,8 +1,8 @@
 <?php
-    global $post;
+    global $post, $postview;
     $categories     = $settings->categories;
     $posts_per_page = $settings->posts_per_page; 
-    $tab_style      = $settings->tab_style; 
+    $tab_style      = $settings->tab_style;
 ?>
 
 <div class="fl-post-tabs">
@@ -39,11 +39,10 @@
                 // The Loop
                 while ( $query->have_posts() ) {
                     $query->the_post();
-                    $hit = get_post_meta($post->ID, 'hit', true) ? get_post_meta($post->ID, 'hit', true) : '0';
                     echo '<div class="font-weight-bold"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></div>';
                     echo '<div class="row mb-2">';
                         echo '<div class="col-6"><i class="fa fa-calendar" aria-hidden="true"></i> ' . get_the_modified_date() . '</div>';
-                        echo '<div class="col-6">Dilihat ' . $hit . ' Kali</div>';
+                        echo '<div class="col-6">' . $postview->get_post_view($post->ID) . '</div>';
                     echo '</div>';
                 }
                 // Reset Query

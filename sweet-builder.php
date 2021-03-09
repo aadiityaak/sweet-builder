@@ -12,3 +12,25 @@ define( 'FL_SWEET_URL', plugins_url( '/', __FILE__ ) );
 
 require_once FL_SWEET_DIR . 'classes/class-fl-sweet-builder-loader.php';
 require_once FL_SWEET_DIR . 'classes/postview.php';
+
+$postview       = new PostView;
+
+// if single post
+function justg_in_single() {
+
+    global $postview, $post;
+    
+    if ( is_single() ) {
+        // $postview->set_post_view($id, $session=false, $administrator=false) default: don't use session & don't count administrator
+        $postview->set_post_view($post->ID, false, false);
+    }
+
+}
+add_action('wp_head', 'justg_in_single');
+
+function justg_register_session() {
+    if( !session_id() ){
+        session_start();
+    }
+}
+add_action('init', 'justg_register_session');
