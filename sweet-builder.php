@@ -19,11 +19,9 @@ $postview       = new PostView;
 function justg_in_single() {
 
     global $postview, $post;
-    
     if ( is_single() ) {
-        // $postview->set_post_view($id, $cookie=false, $administrator=false) default: don't use session & don't count administrator
-        $postview->set_post_view($post->ID, true, false);
+        $postview->set_post_view($post->ID);
     }
 
 }
-add_action('init', 'justg_in_single');
+add_action('wp_head', 'justg_in_single');
