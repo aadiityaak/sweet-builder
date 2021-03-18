@@ -4,7 +4,7 @@
  * A class that handles loading custom modules and custom
  * fields if the builder is installed and activated.
  */
-class FL_Custom_Modules_Example_Loader {
+class FL_Sweet_Builder_Loader {
 	
 	/**
 	 * Initializes the class once all plugins have loaded.
@@ -28,7 +28,7 @@ class FL_Custom_Modules_Example_Loader {
 		add_filter( 'fl_builder_custom_fields', __CLASS__ . '::register_fields' );
 		
 		// Enqueue custom field assets.
-		add_action( 'init', __CLASS__ . '::enqueue_field_assets' );
+		add_action( 'wp_enqueue_scripts', __CLASS__ . '::enqueue_field_assets' );
 	}
 	
 	/**
@@ -61,4 +61,4 @@ class FL_Custom_Modules_Example_Loader {
 	}
 }
 
-FL_Custom_Modules_Example_Loader::init();
+FL_Sweet_Builder_Loader::init();
