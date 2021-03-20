@@ -11,6 +11,7 @@
 define( 'FL_SWEET_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FL_SWEET_URL', plugins_url( '/', __FILE__ ) );
 
+// require_once FL_SWEET_DIR . 'classes/aq_resizer.php';
 require_once FL_SWEET_DIR . 'classes/class-fl-sweet-builder-loader.php';
 require_once FL_SWEET_DIR . 'classes/postview.php';
 

@@ -2,9 +2,9 @@
 
 /**
  *
- * @class FLBigPostModule
+ * @class FLBasicPostModule
  */
-class FLBigPostModule extends FLBuilderModule {
+class FLBasicPostModule extends FLBuilderModule {
 
     /** 
      * Constructor function for the module. You must pass the
@@ -15,11 +15,11 @@ class FLBigPostModule extends FLBuilderModule {
     public function __construct()
     {
         parent::__construct(array(
-            'name'          => __('Big Post', 'fl-builder'),
-            'description'   => __('Big post', 'fl-builder'),
+            'name'          => __('Basic Post', 'fl-builder'),
+            'description'   => __('Basic post', 'fl-builder'),
             'category'		=> __('Velocity Modules', 'fl-builder'),
-            'dir'           => FL_SWEET_DIR . 'modules/big-post/',
-            'url'           => FL_SWEET_URL . 'modules/big-post/',
+            'dir'           => FL_SWEET_DIR . 'modules/basic-post/',
+            'url'           => FL_SWEET_URL . 'modules/basic-post/',
             'editor_export' => true, // Defaults to true and can be omitted.
             'enabled'       => true, // Defaults to true and can be omitted.
         ));
@@ -30,7 +30,7 @@ class FLBigPostModule extends FLBuilderModule {
 /**
  * Register the module and its form settings.
  */
-FLBuilder::register_module('FLBigPostModule', array(
+FLBuilder::register_module('FLBasicPostModule', array(
     'general'       => array( // Tab
         'title'         => __('General', 'fl-builder'), // Tab title
         'sections'      => array( // Tab Sections
