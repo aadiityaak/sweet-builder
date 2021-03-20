@@ -24,20 +24,6 @@ class FLPostabsModule extends FLBuilderModule {
             'enabled'       => true, // Defaults to true and can be omitted.
         ));
     }
-    function getCatList() 
-    {
-        $categories = get_categories( array(
-            'orderby'   => 'name',
-            'order'     => 'ASC',
-            'hide_empty' => false
-        ) );
-        
-        $listCat = [];
-        foreach( $categories as $category ) {
-            $listCat[$category->term_id] = $category->name;
-        }
-        return $listCat;
-    }
 }
 
 /**
@@ -53,7 +39,7 @@ FLBuilder::register_module('FLPostabsModule', array(
                     'categories'   => array(
                         'type'          => 'select',
                         'label'         => __('Category', 'fl-builder'),
-                        'options'       => FLPostabsModule::getCatList(),
+                        'options'       => FL_Sweet_Builder_Loader::getCatList(),
                         'class'         => 'form-controll',
                         'multi-select'  => true
                     ),

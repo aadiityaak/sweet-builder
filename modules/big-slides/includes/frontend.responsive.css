@@ -1,0 +1,16 @@
+<?php
+    $tinggi_slider = $settings->tinggi_slider; 
+?>
+
+.slider-<?php echo $id; ?> .slide-content {
+    width: 50%;
+    height: <?php echo $tinggi_slider/4; ?>px;
+    float: left;
+    background-size: cover;
+    background-position: center;
+}
+.slider-<?php echo $id; ?> .slide-1 {
+    width: 100%;
+    height: <?php echo $tinggi_slider/2; ?>px;
+    float: left;
+}

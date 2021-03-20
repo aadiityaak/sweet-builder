@@ -38,6 +38,8 @@ class FL_Sweet_Builder_Loader {
 		// require_once FL_SWEET_DIR . 'modules/basic-example/basic-example.php';
 		// require_once FL_SWEET_DIR . 'modules/example/example.php';
 		require_once FL_SWEET_DIR . 'modules/post-tabs/post-tabs.php';
+        require_once FL_SWEET_DIR . 'modules/big-slides/big-slides.php';
+        require_once FL_SWEET_DIR . 'modules/big-slides/big-post.php';
 	}
 	
 	/**
@@ -52,13 +54,46 @@ class FL_Sweet_Builder_Loader {
 	 * Enqueues our custom field assets only if the builder UI is active.
 	 */
 	static public function enqueue_field_assets() {
-		if ( ! FLBuilderModel::is_builder_active() ) {
-			return;
-		}
+		// if ( ! FLBuilderModel::is_builder_active() ) {
+		// 	return;
+		// }
 		
 		wp_enqueue_style( 'my-custom-fields', FL_SWEET_URL . 'assets/css/fields.css', array(), '' );
-		wp_enqueue_script( 'my-custom-fields', FL_SWEET_URL . 'assets/js/fields.js', array(), '', true );
+		wp_enqueue_style( 'flickity-css', FL_SWEET_URL . 'assets/css/flickity.min.css', array(), '' );
+		wp_enqueue_script( 'flickity-js', FL_SWEET_URL . 'assets/js/flickity.pkgd.min.js', array(), '', false );
+		wp_enqueue_script( 'sweet-builder-js', FL_SWEET_URL . 'assets/js/sweet-builder.js', array(), '', true );
 	}
+
+	/**
+	 * Set global sat list
+	 */
+    static public function getCatList() 
+    {
+        $categories = get_categories( array(
+            'orderby'   => 'name',
+            'order'     => 'ASC',
+            'hide_empty' => false
+        ) );
+        
+        $listCat = [];
+        foreach( $categories as $category ) {
+            $listCat[$category->term_id] = $category->name;
+        }
+        return $listCat;
+    }
+
+    /**
+	 * Set global excerpt
+	 */
+    static public function excerpt($panjang = 100){
+        $html = get_the_content();
+        $html = strip_tags($html);
+        $html = substr($html, 0, $panjang);
+        $html = substr($html, 0, strripos($html, " "));
+        $html = '<p>'.$html.'...</p>';
+        return $html;
+    }
+
 }
 
 FL_Sweet_Builder_Loader::init();
