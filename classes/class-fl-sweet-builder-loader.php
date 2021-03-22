@@ -29,6 +29,9 @@ class FL_Sweet_Builder_Loader {
 		
 		// Enqueue custom field assets.
 		add_action( 'wp_enqueue_scripts', __CLASS__ . '::enqueue_field_assets' );
+
+        // Run function in single
+		add_action( 'wp_footer', __CLASS__ . '::run_in_single' );
 	}
 	
 	/**
@@ -36,11 +39,13 @@ class FL_Sweet_Builder_Loader {
 	 */
 	static public function load_modules() {
 		// require_once FL_SWEET_DIR . 'modules/basic-example/basic-example.php';
-		// require_once FL_SWEET_DIR . 'modules/example/example.php';
+		require_once FL_SWEET_DIR . 'modules/example/example.php';
 		require_once FL_SWEET_DIR . 'modules/post-tabs/post-tabs.php';
         require_once FL_SWEET_DIR . 'modules/big-slides/big-slides.php';
         require_once FL_SWEET_DIR . 'modules/big-post/big-post.php';
         require_once FL_SWEET_DIR . 'modules/basic-post/basic-post.php';
+        require_once FL_SWEET_DIR . 'modules/typed-post/typed-post.php';
+        require_once FL_SWEET_DIR . 'modules/search-form/search-form.php';
 	}
 	
 	/**
@@ -62,6 +67,7 @@ class FL_Sweet_Builder_Loader {
 		wp_enqueue_style( 'my-custom-fields', FL_SWEET_URL . 'assets/css/custom.css', array(), '' );
 		wp_enqueue_style( 'flickity-css', FL_SWEET_URL . 'assets/css/flickity.min.css', array(), '' );
 		wp_enqueue_script( 'flickity-js', FL_SWEET_URL . 'assets/js/flickity.pkgd.min.js', array(), '', false );
+        wp_enqueue_script( 'typed-builder-js', FL_SWEET_URL . 'assets/js/typed.min.js', array(), '', true );
 		wp_enqueue_script( 'sweet-builder-js', FL_SWEET_URL . 'assets/js/sweet-builder.js', array(), '', true );
 	}
 
@@ -81,7 +87,18 @@ class FL_Sweet_Builder_Loader {
         }
         return $listCat;
     }
-
+    static public function run_in_single() {
+        global $post;
+        $key = 'view_count';
+        $get_count = get_post_meta($post->ID, $key, true);
+        if ( is_singular() ) {
+            if($get_count) {
+                update_post_meta($post->ID, $key, $get_count+1);
+            } else {
+                update_post_meta($post->ID, $key, 1);
+            }
+        }
+    }
     /**
 	 * Set global excerpt
 	 */
@@ -112,30 +129,60 @@ class FL_Sweet_Builder_Loader {
 
     static public function post_style_1($thumbwidth=300,$thumbheight=200,$excerpt=250) {
         ob_start();
-            echo '<div class="content content-big">';
-            echo '<div class="mb-3">';
-                echo '<i class="rounded-circle bolt-badge bg-danger fa fa-bolt fa-lg" aria-hidden="true"></i>';
-                echo self ::thumbnail($thumbwidth,$thumbheight);
-            echo '</div>';
-            echo '<div class="">';
-                echo '<div class="mb-1"><small> '.get_the_date().'</small></div>';
-                echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
-                echo '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>';
-            echo '</div>';
+            echo '<div class="content content-big post-style-1">';
+                echo '<div class="mb-3">';
+                    echo '<i class="rounded-circle bolt-badge bg-danger fa fa-bolt fa-lg" aria-hidden="true"></i>';
+                    echo self ::thumbnail($thumbwidth,$thumbheight);
+                echo '</div>';
+                echo '<div class="">';
+                    echo '<div class="mb-1"><small> '.get_the_date().'</small></div>';
+                    echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+                    echo '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>';
+                echo '</div>';
             echo '</div>';
         return ob_get_clean(); 
     }
     
     static public function post_style_2($thumbwidth=300,$thumbheight=200) {
         ob_start();
-            echo '<div class="row content mb-3">';
-            echo '<div class="col-4 pr-0">';
-                echo self ::thumbnail($thumbwidth,$thumbheight);
+            echo '<div class="row content mb-3 post-style-2">';
+                echo '<div class="col-4 pr-0">';
+                    echo self ::thumbnail($thumbwidth,$thumbheight);
+                echo '</div>';
+                echo '<div class="col-8">';
+                    echo '<div class="mb-1"><small><i class="rounded-circle bg-danger p-1 px-2 fa fa-bolt text-white" aria-hidden="true"></i> '.get_the_date().'</small></div>';
+                    echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+                echo '</div>';
+            echo '</div>';    
+        return ob_get_clean(); 
+    }
+
+    static public function post_style_3($thumbwidth=300,$thumbheight=200,$excerpt=250) {
+        ob_start();
+            echo '<div class="content content-big post-style-3">';
+                echo '<div class="mb-3">';
+                    echo '<i class="rounded-circle bolt-badge bg-danger fa fa-bolt fa-lg" aria-hidden="true"></i>';
+                    echo self ::thumbnail($thumbwidth,$thumbheight);
+                echo '</div>';
+                echo '<div class="">';
+                    echo '<div class="mb-1"><small> '.get_the_date().'</small></div>';
+                    echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+                    echo '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>';
+                echo '</div>';
             echo '</div>';
-            echo '<div class="col-8">';
-                echo '<div class="mb-1"><small><i class="rounded-circle bg-danger p-1 px-2 fa fa-bolt text-white" aria-hidden="true"></i> '.get_the_date().'</small></div>';
-                echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
-            echo '</div>';
+        return ob_get_clean(); 
+    }
+
+    static public function post_style_4($thumbwidth=300,$thumbheight=200) {
+        ob_start();
+            echo '<div class="row content mb-3 post-style-4">';
+                echo '<div class="col-4 pr-0">';
+                    echo self ::thumbnail($thumbwidth,$thumbheight);
+                echo '</div>';
+                echo '<div class="col-8">';
+                    echo '<div class="mb-1"><small>'.get_the_date().'</small></div>';
+                    echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+                echo '</div>';
             echo '</div>';    
         return ob_get_clean(); 
     }

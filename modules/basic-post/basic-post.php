@@ -52,6 +52,29 @@ FLBuilder::register_module('FLBasicPostModule', array(
                         'class'         => 'form-controll',
                         'multi-select'  => true
                     ),
+                    'order'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Order By', 'fl-builder'),
+                        'default'       => 'tabs',
+                        'options'       => array(
+                            'datedesc'      => __('Date New', 'fl-builder'),
+                            'dateasc'      => __('Date Old', 'fl-builder'),
+                            'titleasc'      => __('Title A-Z', 'fl-builder'),
+                            'titleasc'      => __('Title Z-A', 'fl-builder'),
+                            'trending'      => __('Trending', 'fl-builder'),
+                        )
+                    ),
+                    'post_style'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Order By', 'fl-builder'),
+                        'default'       => 'post_style_2',
+                        'options'       => array(
+                            'post_style_1'      => __('Post Style 1', 'fl-builder'),
+                            'post_style_2'      => __('Post Style 2', 'fl-builder'),
+                            'post_style_3'      => __('Post Style 3', 'fl-builder'),
+                            'post_style_4'      => __('Post Style 4', 'fl-builder'),
+                        )
+                    ),
                     'posts_per_page' => array(
                         'type'          => 'text',
                         'label'         => __( 'Post Count', 'fl-builder' ),
