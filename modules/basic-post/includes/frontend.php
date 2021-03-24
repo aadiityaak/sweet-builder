@@ -6,6 +6,7 @@ $categories = $settings->categories;
 $posts_per_page = $settings->posts_per_page;
 $order = $settings->order;
 $post_style = $settings->post_style;
+$excerpt = $settings->excerpt;
 $orderby = 
     $order == 'datedesc' ? ['date','desc','']: 
     ($order == 'datedasc' ? ['date','asc','']: 
@@ -17,8 +18,8 @@ $orderby =
         ))
     );
 
-echo '<div class="big-post big-post-'.$id.'">';
-    echo '<div class="big-post-title mb-3"><h3>'.$title.'</h3></div>';
+echo '<div class="basic-post basic-post-'.$id.'">';
+    echo '<div class="basic-post-title mb-3"><h3>'.$title.'</h3></div>';
     echo '<div class="content">';
         $args = [
             'cat' => $categories,
@@ -35,7 +36,7 @@ echo '<div class="big-post big-post-'.$id.'">';
             while ( $query->have_posts() ) {
                 
                 $query->the_post();
-                echo FL_Sweet_Builder_Loader::$post_style();
+                echo FL_Sweet_Builder_Loader::$post_style(300,200,$excerpt);
             }
         } else {
             // no posts found

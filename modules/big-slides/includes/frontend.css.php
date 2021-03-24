@@ -71,10 +71,11 @@
 
 
 @media ( max-width: 782px ) {
-    .slider-<?php echo $id; ?> .slide-content {
+    .slider-<?php echo $id; ?> .slide-content + .slide-content {
+        margin-bottom: 0;
+        margin-left: 0;
+        height: <?php echo ($tinggi_slider/2)-2.5; ?>px;
         width: 50%;
-        height: <?php echo $tinggi_slider/4; ?>px;
-        margin: 0;
     }
     .slider-<?php echo $id; ?> .slide-1 {
         width: 100%;

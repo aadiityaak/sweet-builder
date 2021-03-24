@@ -64,5 +64,14 @@
         strings: data_post,
         typeSpeed: 30
     });
+
+    // hide me
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+          $('.hideme').hide();
+        } else {
+          $('.hideme').show();
+        }
+      });
 })( jQuery );
   

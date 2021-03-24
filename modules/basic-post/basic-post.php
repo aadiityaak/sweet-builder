@@ -30,6 +30,9 @@ class FLBasicPostModule extends FLBuilderModule {
 /**
  * Register the module and its form settings.
  */
+$list_cat = FL_Sweet_Builder_Loader::getCatList();
+$list_cat['main'] = 'Main Query';
+
 FLBuilder::register_module('FLBasicPostModule', array(
     'general'       => array( // Tab
         'title'         => __('General', 'fl-builder'), // Tab title
@@ -48,7 +51,7 @@ FLBuilder::register_module('FLBasicPostModule', array(
                     'categories'   => array(
                         'type'          => 'select',
                         'label'         => __('Category', 'fl-builder'),
-                        'options'       => FL_Sweet_Builder_Loader::getCatList(),
+                        'options'       => $list_cat,
                         'class'         => 'form-controll',
                         'multi-select'  => true
                     ),
@@ -80,10 +83,15 @@ FLBuilder::register_module('FLBasicPostModule', array(
                         'label'         => __( 'Post Count', 'fl-builder' ),
                         'default'       => '5',
                         'class'         => 'form-controll',
-                        'description'   => __( 'Only Number', 'fl-builder' ),
-                        'help'          => __( 'Ex. "5"', 'fl-builder' )
-                      ),
-
+                        'description'   => __( '', 'fl-builder' ),
+                    ),
+                    'excerpt' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Panjang excerpt', 'fl-builder' ),
+                        'default'       => '0',
+                        'class'         => 'form-controll',
+                        'description'   => __( '', 'fl-builder' ),
+                    ),
                 )
             )
         )
