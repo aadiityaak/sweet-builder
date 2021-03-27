@@ -46,6 +46,7 @@ class FL_Sweet_Builder_Loader {
         require_once FL_SWEET_DIR . 'modules/basic-post/basic-post.php';
         require_once FL_SWEET_DIR . 'modules/typed-post/typed-post.php';
         require_once FL_SWEET_DIR . 'modules/search-form/search-form.php';
+        require_once FL_SWEET_DIR . 'modules/sweet-gallery/sweet-gallery.php';
 	}
 	
 	/**
@@ -66,8 +67,10 @@ class FL_Sweet_Builder_Loader {
 		
 		wp_enqueue_style( 'my-custom-fields', FL_SWEET_URL . 'assets/css/custom.css', array(), '' );
 		wp_enqueue_style( 'flickity-css', FL_SWEET_URL . 'assets/css/flickity.min.css', array(), '' );
-		wp_enqueue_script( 'flickity-js', FL_SWEET_URL . 'assets/js/flickity.pkgd.min.js', array(), '', false );
+        wp_enqueue_style( 'lity-css', FL_SWEET_URL . 'assets/css/lity.min.css', array(), '' );
+		wp_enqueue_script( 'flickity-js', FL_SWEET_URL . 'assets/js/flickity.pkgd.min.js', array(), '', true );
         wp_enqueue_script( 'typed-builder-js', FL_SWEET_URL . 'assets/js/typed.min.js', array(), '', true );
+        wp_enqueue_script( 'lity-js', FL_SWEET_URL . 'assets/js/lity.min.js', array(), '', true );
 		wp_enqueue_script( 'sweet-builder-js', FL_SWEET_URL . 'assets/js/sweet-builder.js', array(), '', true );
 	}
 
@@ -88,10 +91,10 @@ class FL_Sweet_Builder_Loader {
         return $listCat;
     }
     static public function run_in_single() {
-        global $post;
-        $key = 'view_count';
-        $get_count = get_post_meta($post->ID, $key, true);
         if ( is_singular() ) {
+            global $post;
+            $key = 'view_count';
+            $get_count = get_post_meta($post->ID, $key, true);
             if($get_count) {
                 update_post_meta($post->ID, $key, $get_count+1);
             } else {
@@ -128,7 +131,7 @@ class FL_Sweet_Builder_Loader {
         return ob_get_clean();
     }
 
-    static public function post_style_1($thumbwidth=300,$thumbheight=200,$excerpt=250) {
+    static public function post_style_1($thumbwidth=300, $thumbheight=200, $excerpt=250, $date=false, $more=false, $more_text=null) {
         ob_start();
             echo '<div class="content content-big post-style-1">';
                 echo '<div class="mb-3">';
@@ -144,14 +147,14 @@ class FL_Sweet_Builder_Loader {
         return ob_get_clean(); 
     }
     
-    static public function post_style_2($thumbwidth=300,$thumbheight=200,$excerpt=0) {
+    static public function post_style_2($thumbwidth=300, $thumbheight=200, $excerpt=250, $date=false, $more=false, $more_text=null) {
         ob_start();
             echo '<div class="row content mb-3 post-style-2">';
                 echo '<div class="col-md-4 pr-md-0">';
                     echo self ::thumbnail($thumbwidth,$thumbheight);
                 echo '</div>';
                 echo '<div class="col-md-8">';
-                    echo '<div class="mb-1"><small><i class="rounded-circle bg-danger p-1 px-2 fa fa-bolt text-white" aria-hidden="true"></i> '.get_the_date().'</small></div>';
+                    echo ($date == 'show') ? '<div class="mb-1"><small><i class="rounded-circle bg-danger p-1 px-2 fa fa-bolt text-white" aria-hidden="true"></i> '.get_the_date().'</small></div>' : '';
                     echo '<h3 class=h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
                     echo ($excerpt != 0) ? '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>' : '';
                 echo '</div>';
@@ -159,35 +162,90 @@ class FL_Sweet_Builder_Loader {
         return ob_get_clean(); 
     }
 
-    static public function post_style_3($thumbwidth=300,$thumbheight=200,$excerpt=250) {
+    static public function post_style_3($thumbwidth=300, $thumbheight=200, $excerpt=250, $date=false, $more=false, $more_text=null) {
         ob_start();
             echo '<div class="content content-big post-style-3">';
-                echo '<div class="mb-3">';
-                    echo '<i class="rounded-circle bolt-badge bg-danger fa fa-bolt fa-lg" aria-hidden="true"></i>';
+                echo '<div class="mb-3 overelay">';
                     echo self ::thumbnail($thumbwidth,$thumbheight);
                 echo '</div>';
-                echo '<div class="">';
-                    echo '<div class="mb-1"><small> '.get_the_date().'</small></div>';
+                echo '<div class="content-text">';
+                    echo ($date == 'show') ? '<div class="mb-1"><small> '.get_the_date().'</small></div>' : '';
                     echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
-                    echo ($excerpt != 0) ? '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>' : '';
+                    echo '<div class="content">';
+                        echo ($excerpt != 0) ?  self::excerpt($excerpt) : '';
+                        echo ($more == 'show') ? '<a class="read-more" href="' . get_the_permalink() . '">' . $more_text . '</a>' : '';
+                    echo '</div>';
                 echo '</div>';
             echo '</div>';
         return ob_get_clean(); 
     }
 
-    static public function post_style_4($thumbwidth=300,$thumbheight=200,$excerpt=250) {
+    static public function post_style_4($thumbwidth=300, $thumbheight=200, $excerpt=250, $date=false, $more=false, $more_text=null) {
         ob_start();
             echo '<div class="row content mb-3 post-style-4">';
                 echo '<div class="col-md-4 pr-md-0">';
                     echo self ::thumbnail($thumbwidth,$thumbheight);
                 echo '</div>';
                 echo '<div class="col-md-8">';
-                    echo '<div class="mb-1"><small>'.get_the_date().'</small></div>';
+                echo ($date == 'show') ? '<div class="mb-1"><small>'.get_the_date().'</small></div>' : '';
                     echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
                     echo ($excerpt != 0) ? '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>' : '';
                 echo '</div>';
             echo '</div>';    
         return ob_get_clean(); 
+    }
+
+    static public function pagination( $args = array() ) {
+
+        if ( ! isset( $args['total'] ) && $GLOBALS['wp_query']->max_num_pages <= 1 ) {
+            return;
+        }
+        
+        $class = 'pagination justify-content-center';
+
+        $args = wp_parse_args(
+            $args,
+            array(
+                'mid_size'           => 2,
+                'prev_next'          => true,
+                'prev_text'          => __( '&laquo;', 'justg' ),
+                'next_text'          => __( '&raquo;', 'justg' ),
+                'type'               => 'array',
+                'current'            => max( 1, get_query_var( 'paged' ) ),
+                'screen_reader_text' => __( 'Posts navigation', 'justg' ),
+            )
+        );
+
+        $links = paginate_links( $args );
+        if ( ! $links ) {
+            return;
+        }
+
+        ?>
+
+        <nav aria-labelledby="posts-nav-label">
+
+            <h2 id="posts-nav-label" class="sr-only">
+                <?php echo esc_html( $args['screen_reader_text'] ); ?>
+            </h2>
+
+            <ul class="<?php echo esc_attr( $class ); ?>">
+
+                <?php
+                foreach ( $links as $key => $link ) {
+                    ?>
+                    <li class="page-item <?php echo strpos( $link, 'current' ) ? 'active' : ''; ?>">
+                        <?php echo str_replace( 'page-numbers', 'page-link', $link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    </li>
+                    <?php
+                }
+                ?>
+
+            </ul>
+
+        </nav>
+
+        <?php
     }
 
 

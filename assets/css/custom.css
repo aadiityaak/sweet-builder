@@ -14,15 +14,6 @@
     position: relative
 }
 
-.big-post-title:after,
-.basic-post-title:after {
-    content: '';
-    width: 50px;
-    border-bottom: 3px solid #868686;
-    display: block;
-    margin-bottom: 30px;
-}
-
 .fl-theme-builder-header-sticky,
 .fl-builder-content[data-type="header"].fl-theme-builder-header-sticky {
     z-index: 9999;

@@ -5,8 +5,16 @@ $title = $settings->title;
 $categories = $settings->categories;
 $posts_per_page = $settings->posts_per_page;
 $order = $settings->order;
+$date = $settings->date;
 $post_style = $settings->post_style;
 $excerpt = $settings->excerpt;
+$more = $settings->more;
+$more_text = $settings->more_text;
+$width = $settings->width;
+$height = $settings->height;
+$query = $settings->query;
+$pagination = $settings->pagination;
+
 $orderby = 
     $order == 'datedesc' ? ['date','desc','']: 
     ($order == 'datedasc' ? ['date','asc','']: 
@@ -19,29 +27,40 @@ $orderby =
     );
 
 echo '<div class="basic-post basic-post-'.$id.'">';
-    echo '<div class="basic-post-title mb-3"><h3>'.$title.'</h3></div>';
+    echo $title ? '<div class="basic-post-title mb-3"><h3>'.$title.'</h3></div>' : '';
     echo '<div class="content">';
-        $args = [
-            'cat' => $categories,
-            'posts_per_page' => $posts_per_page,
-            'orderby' => $orderby[0],
-            'order' => $orderby[1],
-        ];
-        if($orderby[2]){
-            $args['meta_key'] = $orderby[2];
+        
+        if(is_archive() && $query == 'main'){
+                global $wp_query;
+        } else {
+            $args = [
+                'cat' => $categories,
+                'posts_per_page' => $posts_per_page,
+                'orderby' => $orderby[0],
+                'order' => $orderby[1],
+            ];
+            if($orderby[2]){
+                $args['meta_key'] = $orderby[2];
+            }
+            $wp_query = new WP_Query($args);
         }
-        $query = new WP_Query($args
-            );
-        if ( $query->have_posts() ) {
-            while ( $query->have_posts() ) {
-                
-                $query->the_post();
-                echo FL_Sweet_Builder_Loader::$post_style(300,200,$excerpt);
+        if ( $wp_query->have_posts() ) {
+            while ( $wp_query->have_posts() ) {
+                $wp_query->the_post();
+                echo '<div class="basic-post-col">';
+                    echo FL_Sweet_Builder_Loader::$post_style($width,$height,$excerpt,$date,$more,$more_text);
+                echo '</div>';
             }
         } else {
             // no posts found
+            echo 'Not Found';
         }
         /* Restore original Post Data */
-        wp_reset_postdata();
+        wp_reset_query();
+        if($pagination == 'show'){
+            FL_Sweet_Builder_Loader::pagination();
+        }
+        
+        
         echo '</div>';
 echo '</div>';

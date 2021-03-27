@@ -51,8 +51,8 @@ FLBuilder::register_module('FLBigSlidesModule', array(
                         'class'         => 'form-controll',
                         'description'   => __( 'Only Number', 'fl-builder' ),
                         'help'          => __( 'Ex. "5"', 'fl-builder' )
-                      ),
-                      'slide_style'   => array(
+                    ),
+                    'slide_style'   => array(
                         'type'          => 'select',
                         'label'         => __('Slide Style', 'fl-builder'),
                         'default'       => 'slide-1',

@@ -30,8 +30,7 @@ class FLBasicPostModule extends FLBuilderModule {
 /**
  * Register the module and its form settings.
  */
-$list_cat = FL_Sweet_Builder_Loader::getCatList();
-$list_cat['main'] = 'Main Query';
+
 
 FLBuilder::register_module('FLBasicPostModule', array(
     'general'       => array( // Tab
@@ -51,9 +50,27 @@ FLBuilder::register_module('FLBasicPostModule', array(
                     'categories'   => array(
                         'type'          => 'select',
                         'label'         => __('Category', 'fl-builder'),
-                        'options'       => $list_cat,
+                        'options'       => FL_Sweet_Builder_Loader::getCatList(),
                         'class'         => 'form-controll',
                         'multi-select'  => true
+                    ),
+                    'query'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Query', 'fl-builder'),
+                        'default'       => 'custom',
+                        'options'       => array(
+                            'custom'      => __('Custom Query', 'fl-builder'),
+                            'main'      => __('Main Query (if archive)', 'fl-builder'),
+                        )
+                    ),
+                    'pagination'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Pagination', 'fl-builder'),
+                        'default'       => 'show',
+                        'options'       => array(
+                            'show'      => __('Show', 'fl-builder'),
+                            'hide'      => __('Hide', 'fl-builder'),
+                        )
                     ),
                     'order'   => array(
                         'type'          => 'select',
@@ -67,16 +84,33 @@ FLBuilder::register_module('FLBasicPostModule', array(
                             'trending'      => __('Trending', 'fl-builder'),
                         )
                     ),
-                    'post_style'   => array(
+                )
+            ),
+            'option'       => array( // Section
+                'title'         => __('Option', 'fl-builder'), // Section Title
+                'fields'        => array( // Section Fields
+                    'date'   => array(
                         'type'          => 'select',
-                        'label'         => __('Order By', 'fl-builder'),
-                        'default'       => 'post_style_2',
+                        'label'         => __('Date', 'fl-builder'),
+                        'default'       => 'hide',
                         'options'       => array(
-                            'post_style_1'      => __('Post Style 1', 'fl-builder'),
-                            'post_style_2'      => __('Post Style 2', 'fl-builder'),
-                            'post_style_3'      => __('Post Style 3', 'fl-builder'),
-                            'post_style_4'      => __('Post Style 4', 'fl-builder'),
+                            'show'      => __('Show', 'fl-builder'),
+                            'hide'      => __('Hide', 'fl-builder'),
                         )
+                    ),
+                    'more'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Read more', 'fl-builder'),
+                        'default'       => 'hide',
+                        'options'       => array(
+                            'show'      => __('Show', 'fl-builder'),
+                            'hide'      => __('Hide', 'fl-builder'),
+                        )
+                    ),
+                    'more_text' => array(
+                        'type'    => 'text',
+                        'label'   => __( 'Read more Text', 'fl-builder' ),
+                        'default' => 'More',
                     ),
                     'posts_per_page' => array(
                         'type'          => 'text',
@@ -94,6 +128,78 @@ FLBuilder::register_module('FLBasicPostModule', array(
                     ),
                 )
             )
+
+        )
+    ),
+    'Style'       => array( // Tab
+        'title'         => __('Style', 'fl-builder'), // Tab title
+        'sections'      => array( // Tab Sections
+            'general'       => array( // Section
+                'title'         => __('Post', 'fl-builder'), // Section Title
+                'fields'        => array( // Section Fields
+                    'width'              => array(
+                        'type'       => 'unit',
+                        'label'      => __( 'Width', 'fl-builder' ),
+                        'default'    => '300',
+                        'responsive' => true,
+                        'units'      => array(
+                            'px'
+                        ),
+                        'slider'     => array(
+                            'px' => array(
+                                'min'  => 10,
+                                'max'  => 1500,
+                                'step' => 1,
+                            ),
+                        ),
+                    ),
+                    'height'              => array(
+                        'type'       => 'unit',
+                        'default'    => '200',
+                        'label'      => __( 'Height', 'fl-builder' ),
+                        'responsive' => true,
+                        'units'      => array(
+                            'px'
+                        ),
+                        'slider'     => array(
+                            'px' => array(
+                                'min'  => 10,
+                                'max'  => 1500,
+                                'step' => 1,
+                            ),
+                        ),
+                    ),
+                    'post_style'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Order By', 'fl-builder'),
+                        'default'       => 'post_style_2',
+                        'options'       => array(
+                            'post_style_1'      => __('Post Style 1', 'fl-builder'),
+                            'post_style_2'      => __('Post Style 2', 'fl-builder'),
+                            'post_style_3'      => __('Post Style 3', 'fl-builder'),
+                            'post_style_4'      => __('Post Style 4', 'fl-builder'),
+                        )
+                    ),
+                    'collumn' => array(
+                        'type'    => 'text',
+                        'label'   => __( 'Collumn', 'fl-builder' ),
+                        'default' => '2',
+                    ),
+                    'spacing' => array(
+                        'type'    => 'unit',
+                        'label'   => __( 'Image Spacing', 'fl-builder' ),
+                        'default' => '20',
+                        'units'   => array( 'px' ),
+                        'slider'  => true,
+                        'preview' => array(
+                            'type'      => 'css',
+                            'selector'  => '.basic-post-col',
+                            'property'  => 'padding',
+                            'important' => true,
+                        ),
+                    ),
+                )
+            ),
         )
     ),
 ));
