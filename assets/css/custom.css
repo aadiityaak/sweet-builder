@@ -48,7 +48,7 @@
 .post-style-4::after {
     counter-increment: before-counter;
     content: counter(before-counter);
-    top: -10px;
+    top: -25px;
     left: 5px;
     background-color: #dc3545;
     color: #fff;

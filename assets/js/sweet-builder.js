@@ -36,11 +36,12 @@ jQuery(function ($) {
       $('.digital-clock').html('<i class="fa fa-clock-o" aria-hidden="true"></i> ' + d + ' '  + m + ' '  + y + ' '  + h + ':' + menit + ':' + s)
     }
   
-    // $('.slide-container').flickity({
-    //     // options
-    //     cellAlign: 'left',
-    //     contain: true
-    // });
+    $('.sweet-slider').flickity({
+        // options
+        cellAlign: 'center',
+        wrapAround: true.valueOf,
+        contain: true
+    });
 
 
     //typed js

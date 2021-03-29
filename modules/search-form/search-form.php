@@ -40,7 +40,7 @@ FLBuilder::register_module('FLSearchFormModule', array(
                     'title' => array(
                         'type'          => 'text',
                         'label'         => __( 'Widget Title', 'fl-builder' ),
-                        'default'       => 'Berita Terbaru',
+                        'default'       => 'Pencarian',
                         'class'         => 'form-controll',
                         'description'   => __( '', 'fl-builder' ),
                         'help'          => __( '', 'fl-builder' )

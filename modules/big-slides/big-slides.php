@@ -15,7 +15,7 @@ class FLBigSlidesModule extends FLBuilderModule {
     public function __construct()
     {
         parent::__construct(array(
-            'name'          => __('Big Slide', 'fl-builder'),
+            'name'          => __('Big Post Slide', 'fl-builder'),
             'description'   => __('Big post Slider', 'fl-builder'),
             'category'		=> __('Velocity Modules', 'fl-builder'),
             'dir'           => FL_SWEET_DIR . 'modules/big-slides/',

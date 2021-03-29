@@ -39,7 +39,7 @@ class FL_Sweet_Builder_Loader {
 	 */
 	static public function load_modules() {
 		// require_once FL_SWEET_DIR . 'modules/basic-example/basic-example.php';
-		require_once FL_SWEET_DIR . 'modules/example/example.php';
+		// require_once FL_SWEET_DIR . 'modules/example/example.php';
 		require_once FL_SWEET_DIR . 'modules/post-tabs/post-tabs.php';
         require_once FL_SWEET_DIR . 'modules/big-slides/big-slides.php';
         require_once FL_SWEET_DIR . 'modules/big-post/big-post.php';
@@ -47,6 +47,7 @@ class FL_Sweet_Builder_Loader {
         require_once FL_SWEET_DIR . 'modules/typed-post/typed-post.php';
         require_once FL_SWEET_DIR . 'modules/search-form/search-form.php';
         require_once FL_SWEET_DIR . 'modules/sweet-gallery/sweet-gallery.php';
+        require_once FL_SWEET_DIR . 'modules/sweet-slider/sweet-slider.php';
 	}
 	
 	/**
