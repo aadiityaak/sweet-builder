@@ -35,14 +35,6 @@ jQuery(function ($) {
     
       $('.digital-clock').html('<i class="fa fa-clock-o" aria-hidden="true"></i> ' + d + ' '  + m + ' '  + y + ' '  + h + ':' + menit + ':' + s)
     }
-  
-    $('.sweet-slider').flickity({
-        // options
-        cellAlign: 'center',
-        wrapAround: true.valueOf,
-        contain: true
-    });
-
 
     //typed js
     //declare an array

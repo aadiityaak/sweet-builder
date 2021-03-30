@@ -36,4 +36,4 @@ function refresh_bb_cache()
      FLBuilder::render_css(); // You can also do this to flush the CSS.
   }
 }
-add_action( 'wp', 'refresh_bb_cache' );
+// add_action( 'wp', 'refresh_bb_cache' );

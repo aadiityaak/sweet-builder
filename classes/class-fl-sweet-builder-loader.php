@@ -48,6 +48,7 @@ class FL_Sweet_Builder_Loader {
         require_once FL_SWEET_DIR . 'modules/search-form/search-form.php';
         require_once FL_SWEET_DIR . 'modules/sweet-gallery/sweet-gallery.php';
         require_once FL_SWEET_DIR . 'modules/sweet-slider/sweet-slider.php';
+        require_once FL_SWEET_DIR . 'modules/carousel-post/carousel-post.php';
 	}
 	
 	/**

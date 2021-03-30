@@ -75,7 +75,7 @@ class FLSweetSliderModule extends FLBuilderModule {
 				$data->title       = $photo->title;
 
                 // URL img
-                $data->src     = aq_resize( $photo->sizes->full->url, $this->settings->width, $this->settings->height, true, true, true );
+                $data->src     = aq_resize( $photo->sizes->full->url, $this->settings->width, $this->settings->height, (bool)$this->settings->crop, true, true );
 
 				// Photo Link
 				if ( isset( $photo->sizes->large ) ) {
@@ -114,9 +114,17 @@ FLBuilder::register_module('FLSweetSliderModule', array(
                 'title'         => __('Option', 'fl-builder'), // Section Title
                 'fields'        => array( // Section Fields
                     'collumn' => array(
-                        'type'    => 'text',
+                        'type'    => 'unit',
                         'label'   => __( 'Collumn', 'fl-builder' ),
-                        'default' => '4',
+                        'units'   => array( '%' ),
+                        'default' => '100',
+                        'preview'    => array(
+                            'type'      => 'css',
+                            'selector'  => '.carousel-post-col',
+                            'property'  => 'width',
+                            'important' => true,
+                            'unit'      => '%'
+                        ),
                     ),
                     'img_spacing' => array(
                         'type'    => 'unit',
@@ -126,9 +134,10 @@ FLBuilder::register_module('FLSweetSliderModule', array(
                         'slider'  => true,
                         'preview' => array(
                             'type'      => 'css',
-                            'selector'  => '.sweet-slider-img',
+                            'selector'  => '.carousel-post-col',
                             'property'  => 'padding',
                             'important' => true,
+                            'unit'      => 'px'
                         ),
                     ),
                 )
@@ -158,7 +167,7 @@ FLBuilder::register_module('FLSweetSliderModule', array(
                         ),
                         'preview'    => array(
                             'type'      => 'css',
-                            'selector'  => '.sweet-slider-img',
+                            'selector'  => '.carousel-post-col',
                             'property'  => 'width',
                             'important' => true,
                         ),
@@ -180,10 +189,19 @@ FLBuilder::register_module('FLSweetSliderModule', array(
                         ),
                         'preview' => array(
                             'type'      => 'css',
-                            'selector'  => '.sweet-slider-img img',
+                            'selector'  => '.carousel-post-col',
                             'property'  => 'height',
                             'important' => true,
                         ),
+                    ),
+                    'crop'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Images Crop', 'fl-builder'),
+                        'default'       => 'true',
+                        'options'       => array(
+                            'true'    => __('Crop', 'fl-builder'),
+                            ''  => __("Don't Crop", 'fl-builder'),
+                        )
                     ),
                     'rounded'   => array(
                         'type'          => 'select',
@@ -197,6 +215,35 @@ FLBuilder::register_module('FLSweetSliderModule', array(
                 )
             )
         )
+    ),
+    'slider'       => array( // Tab
+        'title'         => __('Slider', 'fl-builder'), // Tab title
+        'sections'      => array( // Tab Sections
+            'style'       => array( // Section
+                'title'         => __('Size', 'fl-builder'), // Section Title
+                'fields'        => array( // Section Fields
+                    'dots'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Slide Dots', 'fl-builder'),
+                        'default'       => '',
+                        'options'       => array(
+                            'true'    => __('True', 'fl-builder'),
+                            ''      => __('False', 'fl-builder'),
+                        )
+                    ),
+                    'navs'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Slide Navs', 'fl-builder'),
+                        'default'       => '',
+                        'options'       => array(
+                            'true'    => __('True', 'fl-builder'),
+                            ''      => __('False', 'fl-builder'),
+                        )
+                    ),
+                )
+            )
+        )
     )
+
 
 ));
