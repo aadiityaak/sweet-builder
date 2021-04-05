@@ -1,7 +1,6 @@
 <?php
 global $post, $postview;
 $i = 0;
-$title = $settings->title;
 $categories = $settings->categories;
 $posts_per_page = $settings->posts_per_page;
 $order = $settings->order;
@@ -13,6 +12,7 @@ $more_text = $settings->more_text;
 $width = $settings->width;
 $height = $settings->height;
 $query = $settings->query;
+$offset = $settings->offset;
 $pagination = $settings->pagination;
 
 $orderby = 
@@ -27,7 +27,6 @@ $orderby =
     );
 
 echo '<div class="basic-post basic-post-'.$id.'">';
-    echo $title ? '<div class="basic-post-title mb-3"><h3>'.$title.'</h3></div>' : '';
     echo '<div class="content">';
         
         if(is_archive() && $query == 'main'){
@@ -36,6 +35,7 @@ echo '<div class="basic-post basic-post-'.$id.'">';
             $args = [
                 'cat' => $categories,
                 'posts_per_page' => $posts_per_page,
+                'offset' => $offset,
                 'orderby' => $orderby[0],
                 'order' => $orderby[1],
             ];

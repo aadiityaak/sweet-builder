@@ -39,14 +39,6 @@ FLBuilder::register_module('FLBasicPostModule', array(
             'general'       => array( // Section
                 'title'         => __('Post', 'fl-builder'), // Section Title
                 'fields'        => array( // Section Fields
-                    'title' => array(
-                        'type'          => 'text',
-                        'label'         => __( 'Widget Title', 'fl-builder' ),
-                        'default'       => 'Berita Terbaru',
-                        'class'         => 'form-controll',
-                        'description'   => __( '', 'fl-builder' ),
-                        'help'          => __( '', 'fl-builder' )
-                      ),
                     'categories'   => array(
                         'type'          => 'select',
                         'label'         => __('Category', 'fl-builder'),
@@ -116,6 +108,13 @@ FLBuilder::register_module('FLBasicPostModule', array(
                         'type'          => 'text',
                         'label'         => __( 'Post Count', 'fl-builder' ),
                         'default'       => '5',
+                        'class'         => 'form-controll',
+                        'description'   => __( '', 'fl-builder' ),
+                    ),
+                    'offset' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Offset', 'fl-builder' ),
+                        'default'       => '0',
                         'class'         => 'form-controll',
                         'description'   => __( '', 'fl-builder' ),
                     ),

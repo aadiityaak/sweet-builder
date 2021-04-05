@@ -53,3 +53,8 @@
 .typed-post-title {
     padding: 15px 0;
 }
+
+.single #wrapper-content .fl-photo-content,
+.single #wrapper-content .fl-photo-content img {
+    width:100%;
+}

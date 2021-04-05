@@ -43,7 +43,7 @@ echo '<div class="big-post big-post-'.$id.'">';
             if ( $query->have_posts() ) {
                 while ( $query->have_posts() ) {
                     $query->the_post();
-                    echo FL_Sweet_Builder_Loader::post_style_2($width, $height, $excerpt=0, $date, $more=false, $more_text=null);
+                    echo FL_Sweet_Builder_Loader::post_style_2($width, $height, $excerpt=0, $date, $more, $more_text);
                 }
             } else {
                 // no posts found

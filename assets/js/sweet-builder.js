@@ -66,7 +66,20 @@ jQuery(function ($) {
         } else {
           $('.hideme').show();
         }
-      });
+    });
+
+    $(".share-content").jsSocials({
+        showCount: false,
+        showLabel: true,
+        shares: [
+            "email",
+            "twitter",
+            "facebook",
+            "linkedin",
+            { share: "pinterest", label: "Pin this" },
+            "whatsapp"
+        ]
+    });
 
 });
   

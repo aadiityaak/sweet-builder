@@ -34,7 +34,7 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    margin-left: 5px;
+    <!-- margin-left: 5px; -->
 }
 .slider-<?php echo $id; ?> .slide-content > div {
     z-index: 9;
@@ -44,7 +44,7 @@
     margin-bottom: 5px;
     margin-left: 5px;
     height: <?php echo ($tinggi_slider/2)-2.5; ?>px;
-    width: calc(25% - 10px);
+    width: calc(25% - 5px);
 }
 .slider-<?php echo $id; ?> .slide-content + .slide-content .content-excerpt {
     max-height: 0px;
