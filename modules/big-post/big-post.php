@@ -24,7 +24,6 @@ class FLBigPostModule extends FLBuilderModule {
             'enabled'       => true, // Defaults to true and can be omitted.
         ));
     }
-
 }
 
 /**
@@ -59,10 +58,83 @@ FLBuilder::register_module('FLBigPostModule', array(
                         'class'         => 'form-controll',
                         'description'   => __( 'Only Number', 'fl-builder' ),
                         'help'          => __( 'Ex. "5"', 'fl-builder' )
-                      ),
-
+                    ),
+                    'date'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Date', 'fl-builder'),
+                        'default'       => 'hide',
+                        'options'       => array(
+                            'show'      => __('Show', 'fl-builder'),
+                            'hide'      => __('Hide', 'fl-builder'),
+                        )
+                    ),
                 )
             )
+        )
+    ),
+    'Style'       => array( // Tab
+        'title'         => __('Style', 'fl-builder'), // Tab title
+        'sections'      => array( // Tab Sections
+            'general'       => array( // Section
+                'title'         => __('Post', 'fl-builder'), // Section Title
+                'fields'        => array( // Section Fields
+                    'width'              => array(
+                        'type'       => 'unit',
+                        'label'      => __( 'Width', 'fl-builder' ),
+                        'default'    => '300',
+                        'responsive' => true,
+                        'units'      => array(
+                            'px'
+                        ),
+                        'slider'     => array(
+                            'px' => array(
+                                'min'  => 10,
+                                'max'  => 1500,
+                                'step' => 1,
+                            ),
+                        ),
+                    ),
+                    'height'              => array(
+                        'type'       => 'unit',
+                        'default'    => '200',
+                        'label'      => __( 'Height', 'fl-builder' ),
+                        'responsive' => true,
+                        'units'      => array(
+                            'px'
+                        ),
+                        'slider'     => array(
+                            'px' => array(
+                                'min'  => 10,
+                                'max'  => 1500,
+                                'step' => 1,
+                            ),
+                        ),
+                    ),
+					'color'      => array(
+						'type'        => 'color',
+						'connections' => array( 'color' ),
+						'show_reset'  => true,
+						'show_alpha'  => true,
+						'label'       => __( 'Color', 'fl-builder' ),
+						'preview'     => array(
+							'type'      => 'css',
+							'selector'  => '{node} .judul-text',
+							'property'  => 'color',
+							'important' => true,
+						),
+					),
+					'typography' => array(
+						'type'       => 'typography',
+						'label'      => __( 'Typography', 'fl-builder' ),
+						'responsive' => true,
+						'preview'    => array(
+							'type'      => 'css',
+							'selector'  => '{node} .judul-text',
+							'important' => true,
+						),
+					),
+				),
+            ),
         )
     ),
 ));

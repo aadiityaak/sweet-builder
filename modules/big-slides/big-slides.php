@@ -91,5 +91,34 @@ FLBuilder::register_module('FLBigSlidesModule', array(
                 )
             )
         )
+    ),
+    'Slider'       => array( // Tab
+        'title'         => __('Slider', 'fl-builder'), // Tab title
+        'sections'      => array( // Tab Sections
+            'general'       => array( // Section
+                'title'         => __('Post', 'fl-builder'), // Section Title
+                'fields'        => array( // Section Fields
+                    'dots'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Slide Dots', 'fl-builder'),
+                        'default'       => '',
+                        'options'       => array(
+                            'true'    => __('True', 'fl-builder'),
+                            ''      => __('False', 'fl-builder'),
+                        )
+                    ),
+                    'navs'   => array(
+                        'type'          => 'select',
+                        'label'         => __('Slide Navs', 'fl-builder'),
+                        'default'       => '',
+                        'options'       => array(
+                            'true'    => __('True', 'fl-builder'),
+                            ''      => __('False', 'fl-builder'),
+                        )
+                    ),
+
+                )
+            ),
+        )
     )
 ));

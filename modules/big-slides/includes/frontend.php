@@ -5,14 +5,24 @@ $categories = $settings->categories;
 $posts_per_page = $settings->posts_per_page; 
 $slide_style = $settings->slide_style;
 $posts_per_page = $slide_style == 'slide-1' ? ceil($posts_per_page / 5) * 5 : $posts_per_page;
+
+$sliderOption = [];
+$sliderOption['pageDots'] = (bool) $settings->dots;
+$sliderOption['wrapAround'] = true;
+$sliderOption['cellAlign'] = 'center';
+$sliderOption['imagesLoaded'] = true;
+$sliderOption['prevNextButtons'] = (bool) $settings->navs;
+$sliderOption = json_encode($sliderOption);
+
 $query = new WP_Query( 
     [
         'cat' => implode(',',$categories),
         'posts_per_page' => $posts_per_page
     ]);
 $totals_post = $query->post_count;
-
-echo '<div class="slide-container mb-3 slider-'.$id.'">';
+?>
+    <div data-flickity='<?php echo $sliderOption; ?>' class="carousel slide-container mb-3 slider-<?php echo $id; ?>">
+    <?php
     // The Loop
     if ( $query->have_posts() ) {
         while ( $query->have_posts() ) {

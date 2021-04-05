@@ -171,7 +171,7 @@ FLBuilder::register_module('FLBasicPostModule', array(
                     ),
                     'post_style'   => array(
                         'type'          => 'select',
-                        'label'         => __('Order By', 'fl-builder'),
+                        'label'         => __('Post Style', 'fl-builder'),
                         'default'       => 'post_style_2',
                         'options'       => array(
                             'post_style_1'      => __('Post Style 1', 'fl-builder'),

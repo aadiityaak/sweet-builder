@@ -135,13 +135,16 @@ class FL_Sweet_Builder_Loader {
 
     static public function post_style_1($thumbwidth=300, $thumbheight=200, $excerpt=250, $date=false, $more=false, $more_text=null) {
         ob_start();
+        $category = get_the_category();
             echo '<div class="content content-big post-style-1">';
                 echo '<div class="mb-3">';
-                    echo '<i class="rounded-circle bolt-badge bg-danger fa fa-bolt fa-lg" aria-hidden="true"></i>';
                     echo self ::thumbnail($thumbwidth,$thumbheight);
                 echo '</div>';
-                echo '<div class="">';
-                    echo '<div class="mb-1"><small> '.get_the_date().'</small></div>';
+                echo '<div class="mb-2">';
+                    echo '<div class="d-flex justify-content-between mb-2">';
+                        echo '<span class="badge badge-primary py-1 px-2"><a class="text-white" href="'. esc_url( get_category_link( $category[0]->term_id ) ) .'">'.$category[0]->cat_name.'</a></span>';
+                        echo '<span class="mr-0 ml-auto"><small><i class="fa fa-calendar" aria-hidden="true"></i> '.get_the_date().'</small></span>';
+                    echo '</div>';
                     echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
                     echo '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>';
                 echo '</div>';
@@ -156,8 +159,8 @@ class FL_Sweet_Builder_Loader {
                     echo self ::thumbnail($thumbwidth,$thumbheight);
                 echo '</div>';
                 echo '<div class="col-md-8">';
-                    echo ($date == 'show') ? '<div class="mb-1"><small><i class="rounded-circle bg-danger p-1 px-2 fa fa-bolt text-white" aria-hidden="true"></i> '.get_the_date().'</small></div>' : '';
-                    echo '<h3 class=h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+                    echo ($date == 'show') ? '<div class="mb-1"><small><i class="fa fa-calendar" aria-hidden="true"></i> '.get_the_date().'</small></div>' : '';
+                    echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
                     echo ($excerpt != 0) ? '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>' : '';
                 echo '</div>';
             echo '</div>';    
@@ -171,7 +174,7 @@ class FL_Sweet_Builder_Loader {
                     echo self ::thumbnail($thumbwidth,$thumbheight);
                 echo '</div>';
                 echo '<div class="content-text">';
-                    echo ($date == 'show') ? '<div class="mb-1"><small> '.get_the_date().'</small></div>' : '';
+                    echo ($date == 'show') ? '<div class="mb-1"><small><i class="fa fa-calendar" aria-hidden="true"></i> '.get_the_date().'</small></div>' : '';
                     echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
                     echo '<div class="content">';
                         echo ($excerpt != 0) ?  self::excerpt($excerpt) : '';
@@ -189,7 +192,7 @@ class FL_Sweet_Builder_Loader {
                     echo self ::thumbnail($thumbwidth,$thumbheight);
                 echo '</div>';
                 echo '<div class="col-md-8">';
-                echo ($date == 'show') ? '<div class="mb-1"><small>'.get_the_date().'</small></div>' : '';
+                echo ($date == 'show') ? '<div class="mb-1"><small><i class="fa fa-calendar" aria-hidden="true"></i> '.get_the_date().'</small></div>' : '';
                     echo '<h3 class="h4"><a class="judul-text " href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
                     echo ($excerpt != 0) ? '<div class="content-excerpt">'.self::excerpt($excerpt).'</div>' : '';
                 echo '</div>';

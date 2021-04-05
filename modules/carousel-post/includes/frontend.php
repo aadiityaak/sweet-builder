@@ -1,7 +1,6 @@
 <?php
 global $post, $postview;
 $i = 0;
-$title = $settings->title;
 $categories = $settings->categories;
 $posts_per_page = $settings->posts_per_page;
 $order = $settings->order;
@@ -13,7 +12,6 @@ $more_text = $settings->more_text;
 $width = $settings->width;
 $height = $settings->height;
 $query = $settings->query;
-$pagination = $settings->pagination;
 
 $sliderOption = [];
 $sliderOption['pageDots'] = (bool) $settings->dots;
